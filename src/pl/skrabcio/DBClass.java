@@ -2,7 +2,6 @@ package pl.skrabcio;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -11,8 +10,8 @@ public class DBClass {
 		public static final String DRIVER = "org.sqlite.JDBC";
 		public static final String DB_URL = "jdbc:sqlite:db.db";
 
-		private Connection connect;
-		private Statement status;
+		protected Connection connect;
+		protected Statement status;
 		
 		public DBClass() {
 			try {
