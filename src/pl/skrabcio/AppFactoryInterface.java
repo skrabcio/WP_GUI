@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public interface AppFactoryInterface {
 	
-	public void addItem(String nameItem);
-	public void deleteItem(int indexItem);
-	public ArrayList<String> getItem();
-	public void sortItem();
+	public int getId();
+	public void setId(int id);
+	public String getName();
+	public void setName(String name);
+	
 
 }
