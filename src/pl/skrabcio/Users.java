@@ -13,7 +13,7 @@ public class Users extends DBClass implements AppFactoryInterface {
 
 	public boolean insert(String arg0, String...args) {
 		try {
-			PreparedStatement prepare = connect.prepareStatement ("INSERT into Users values(NULL,?,?);");
+			PreparedStatement prepare = connect.prepareStatement ("INSERT INTO Users values(NULL,?,?,0);");
 			prepare.setString(1,arg0);
 			prepare.setString(2,args[0]);
 			prepare.execute();
@@ -28,15 +28,16 @@ public class Users extends DBClass implements AppFactoryInterface {
 
 	public List<UsersTable> select(){
 		List<UsersTable> usersList = new LinkedList<UsersTable>();
-		int id;
+		int id,isDeleted;
 		String name, mail;
 		try {
-			ResultSet result = status.executeQuery("SELECT * FROM Users;");
+			ResultSet result = status.executeQuery("SELECT * FROM Users WHERE isDeleted = 0;");
 			while(result.next()) {
 				id = result.getInt("id_user");
 				name = result.getString("name_user");
 				mail = result.getString("mail_user");
-				usersList.add(new UsersTable(id, name, mail));	
+				isDeleted = result.getInt("isDeleted");
+				usersList.add(new UsersTable(id, name, mail, isDeleted));	
 			}
 		}
 		catch(SQLException e) { 
@@ -45,5 +46,20 @@ public class Users extends DBClass implements AppFactoryInterface {
 		}
 		return usersList;
 		
+	}
+
+	
+	public boolean delete(int id) {
+		try {
+			PreparedStatement prepare = connect.prepareStatement ("UPDATE Users SET isDeleted = 1 WHERE id_user = ?");
+			prepare.setInt(1,id);
+			prepare.execute();
+		}
+		catch(SQLException e) {
+			System.err.println("B³¹d usuwania u¿ytkownika");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }

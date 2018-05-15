@@ -5,15 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0">
          <children>
-            <Button id="Add" layoutX="434.0" layoutY="84.0" mnemonicParsing="false" text="Add" />
-            <Button id="Get" layoutX="434.0" layoutY="131.0" mnemonicParsing="false" text="Get" />
-            <Button id="Del" layoutX="434.0" layoutY="175.0" mnemonicParsing="false" text="Del" />
-            <Button id="Sort" layoutX="434.0" layoutY="216.0" mnemonicParsing="false" text="Sort" />
+            <Button id="addButton" fx:id="addButton" layoutX="434.0" layoutY="84.0" mnemonicParsing="false" text="Add" />
+            <Button id="getButton" fx:id="getButton" layoutX="434.0" layoutY="131.0" mnemonicParsing="false" text="Get" />
+            <Button id="delButton" fx:id="delButton" layoutX="434.0" layoutY="175.0" mnemonicParsing="false" text="Del" />
             <ListView layoutX="25.0" layoutY="29.0" prefHeight="360.0" prefWidth="400.0" AnchorPane.topAnchor="20.0" />
          </children>
     </AnchorPane>

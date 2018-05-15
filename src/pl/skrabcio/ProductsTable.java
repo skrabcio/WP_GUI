@@ -5,6 +5,7 @@ public class ProductsTable{
 	
 	private int id_product;
     private String name_product;
+    private int isDeleted;
  
     public int getId() {
         return id_product;
@@ -18,17 +19,24 @@ public class ProductsTable{
     public void setName(String name_product) {
         this.name_product = name_product;
     }
+    public int isDeleted() {
+        return isDeleted;
+    }
+    public void isDeleted(int isDeleted) {
+        this.isDeleted = isDeleted;
+    }
   
  
     public ProductsTable() {}
-    public ProductsTable(int id_product, String name_product) {
+    public ProductsTable(int id_product, String name_product, int isDeleted) {
         this.id_product = id_product;
         this.name_product = name_product;
+        this.isDeleted = isDeleted;
     }
  
     @Override
     public String toString() {
-        return "["+id_product+"] - "+name_product;
+        return "["+id_product+"] - "+name_product+" - "+isDeleted;
     }
 
 }
