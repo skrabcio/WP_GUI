@@ -28,19 +28,23 @@ public class Users extends DBClass implements AppFactoryInterface {
 
 	public List<UsersTable> select(){
 		List<UsersTable> usersList = new LinkedList<UsersTable>();
-		int id,isDeleted;
+		int id;
+		boolean isDeleted;
 		String name, mail;
 		try {
-			ResultSet result = status.executeQuery("SELECT * FROM Users WHERE isDeleted = 0;");
+			ResultSet result = status.executeQuery("SELECT * FROM Users WHERE isDeleted IS NULL");
 			while(result.next()) {
 				id = result.getInt("id_user");
 				name = result.getString("name_user");
 				mail = result.getString("mail_user");
-				isDeleted = result.getInt("isDeleted");
+				isDeleted = result.getBoolean("isDeleted");
 				usersList.add(new UsersTable(id, name, mail, isDeleted));	
+				System.out.println(name + id  + "Users");
 			}
+			System.out.println(result + "Users");
 		}
 		catch(SQLException e) { 
+			System.err.println("Select user b³ad");
 			e.printStackTrace();
 			return null;
 		}

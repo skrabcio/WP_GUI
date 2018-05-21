@@ -27,15 +27,16 @@ public class Products extends DBClass implements AppFactoryInterface {
 
 	public List<ProductsTable> select(){
 		List<ProductsTable> productsList = new LinkedList<ProductsTable>();
-		int id, isDeleted;
+		int id;
+		boolean isDeleted;
 		String name;
 		try {
-			ResultSet result = status.executeQuery("SELECT * FROM Products WHERE isDeleted = 0;");
+			ResultSet result = status.executeQuery("SELECT * FROM Products WHERE isDeleted IS NULL");
 			while(result.next()) {
 				id = result.getInt("id_product"); 
 				name = result.getString("name_product");
-				isDeleted = result.getInt("isDeleted");
-				productsList.add(new ProductsTable(id, name,isDeleted));	
+				isDeleted = result.getBoolean("isDeleted");
+				productsList.add(new ProductsTable(id, name, isDeleted));	
 			}
 		}
 		catch(SQLException e) { 

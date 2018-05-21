@@ -5,7 +5,7 @@ public class ProductsTable{
 	
 	private int id_product;
     private String name_product;
-    private int isDeleted;
+    private boolean isDeleted;
  
     public int getId() {
         return id_product;
@@ -19,16 +19,16 @@ public class ProductsTable{
     public void setName(String name_product) {
         this.name_product = name_product;
     }
-    public int isDeleted() {
+    public boolean isDeleted() {
         return isDeleted;
     }
-    public void isDeleted(int isDeleted) {
+    public void isDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
   
  
     public ProductsTable() {}
-    public ProductsTable(int id_product, String name_product, int isDeleted) {
+    public ProductsTable(int id_product, String name_product, boolean isDeleted) {
         this.id_product = id_product;
         this.name_product = name_product;
         this.isDeleted = isDeleted;

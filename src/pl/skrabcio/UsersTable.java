@@ -6,7 +6,7 @@ public class UsersTable {
 	private int id_user;
     private String name_user;
     private String mail_user;
-    private int isDeleted;
+    private boolean isDeleted;
  
     public int getId() {
         return id_user;
@@ -26,15 +26,15 @@ public class UsersTable {
     public void setMail(String mail_user) {
         this.mail_user = mail_user;
     }
-    public int isDeleted() {
+    public boolean isDeleted() {
         return isDeleted;
     }
-    public void isDeleted(int isDeleted) {
+    public void isDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
  
     public UsersTable() {}
-    public UsersTable(int id_user, String name_user, String mail_user, int isDeleted) {
+    public UsersTable(int id_user, String name_user, String mail_user, boolean isDeleted) {
         this.id_user = id_user;
         this.name_user = name_user;
         this.mail_user = mail_user;
