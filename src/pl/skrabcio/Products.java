@@ -36,8 +36,8 @@ public class Products extends DBClass implements AppFactoryInterface {
 				id = result.getInt("id_product"); 
 				name = result.getString("name_product");
 				isDeleted = result.getBoolean("isDeleted");
-				productsList.add(new ProductsTable(id, name, isDeleted));	
-			}
+				productsList.add(new ProductsTable(id, name, isDeleted));
+			}	
 		}
 		catch(SQLException e) { 
 			e.printStackTrace();

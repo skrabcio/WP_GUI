@@ -47,7 +47,7 @@ public class DBClass {
 					"    isDeleted BOOLEAN      DEFAULT (0) \r\n" + 
 					");";
 			String createProducts = "CREATE TABLE IF NOT EXISTS Products (id_product INTEGER PRIMARY KEY AUTOINCREMENT, name_product VARCHAR(32), isDeleted BOOLEAN DEFAULT (0))";
-			String createPriviledges = "CREATE TABLE IF NOT EXISTS Priviledges (id_priviledge INTEGER PRIMARY KEY AUTOINCREMENT, name_priviledge VARCHAR(32), isDeleted BOOLEAN DEFAULT (0))";
+			String createPriviledges = "CREATE TABLE IF NOT EXISTS Privileges (id_priviledge INTEGER PRIMARY KEY AUTOINCREMENT, name_priviledge VARCHAR(32), isDeleted BOOLEAN DEFAULT (0))";
 		
 			try {
 				status.executeUpdate(createUsers);

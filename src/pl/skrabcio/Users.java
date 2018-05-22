@@ -38,10 +38,8 @@ public class Users extends DBClass implements AppFactoryInterface {
 				name = result.getString("name_user");
 				mail = result.getString("mail_user");
 				isDeleted = result.getBoolean("isDeleted");
-				usersList.add(new UsersTable(id, name, mail, isDeleted));	
-				System.out.println(name + id  + "Users");
+				usersList.add(new UsersTable(id, name, mail, isDeleted));
 			}
-			System.out.println(result + "Users");
 		}
 		catch(SQLException e) { 
 			System.err.println("Select user b³ad");

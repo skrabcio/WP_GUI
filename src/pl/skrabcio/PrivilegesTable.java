@@ -5,7 +5,7 @@ public class PrivilegesTable{
 
 	private int id_privileges;
     private String name_privileges;
-    private int isDeleted;
+    private boolean isDeleted;
     
     public int getId() {
         return id_privileges;
@@ -19,16 +19,16 @@ public class PrivilegesTable{
     public void setName(String name_privileges) {
         this.name_privileges = name_privileges;
     }
-    public int isDeleted() {
+    public boolean isDeleted() {
         return isDeleted;
     }
-    public void isDeleted(int isDeleted) {
+    public void isDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
   
  
     public PrivilegesTable() {}
-    public PrivilegesTable(int id_privileges, String name_privileges, int isDeleted) {
+    public PrivilegesTable(int id_privileges, String name_privileges, boolean isDeleted) {
         this.id_privileges = id_privileges;
         this.name_privileges = name_privileges;
         this.isDeleted = isDeleted;

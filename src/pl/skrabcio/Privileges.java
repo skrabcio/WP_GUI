@@ -27,14 +27,15 @@ public class Privileges extends DBClass implements AppFactoryInterface {
 
 	public List<PrivilegesTable> select(){
 		List<PrivilegesTable> privilegesList = new LinkedList<PrivilegesTable>();
-		int id, isDeleted;
+		int id;
+		boolean isDeleted;
 		String name;
 		try {
-			ResultSet result = status.executeQuery("SELECT * FROM Privileges WHERE isDeleted = 0;");
+			ResultSet result = status.executeQuery("SELECT * FROM Privileges WHERE isDeleted IS NULL;");
 			while(result.next()) {
-				id = result.getInt("id_privileges");
-				name = result.getString("name_privileges");
-				isDeleted = result.getInt("isDeleted");
+				id = result.getInt("id_privilege");
+				name = result.getString("name_privilege");
+				isDeleted = result.getBoolean("isDeleted");
 				privilegesList.add(new PrivilegesTable(id, name, isDeleted));	
 			}
 		}

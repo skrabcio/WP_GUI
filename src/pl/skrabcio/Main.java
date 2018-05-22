@@ -20,11 +20,19 @@ import javafx.geometry.Insets;
 
 public class Main extends Application{
 	
+	AppFactoryInterface factoryUsers = (new AppFactory()).createFactory(FactoryType.Users);
+	AppFactoryInterface factoryProducts = (new AppFactory()).createFactory(FactoryType.Products);
+	AppFactoryInterface factoryPrivileges = (new AppFactory()).createFactory(FactoryType.Privileges);
+	List<UsersTable> usersItem; 
+	List<ProductsTable> productsItem; 
+	List<PrivilegesTable> privilegesItem; 
+	
 	Stage window;
 	Scene scene;
 	Button addButton, delButton, getButton;
 	ChoiceBox<String> tableChoiceBox;
 	ListView<String> listView;
+	 
 	
 	public static void main(String[] args) {
 		launch(args);
@@ -49,34 +57,63 @@ public class Main extends Application{
 		listView = new ListView<>();
 		listView.getItems().addAll(getList(tableChoiceBox));
 		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		System.out.println(getList(tableChoiceBox));
 		
 		getButton.setOnAction(e-> getList(tableChoiceBox));
-		
+		getButton.setOnAction(e-> refresh());
+		tableChoiceBox.setOnAction(e-> getList(tableChoiceBox));
+		tableChoiceBox.setOnAction(e-> refresh());
+		delButton.setOnAction(e->deleteItem());
+				
 		VBox layout = new VBox(10);
 		layout.setPadding(new Insets(20, 20, 20, 20));
 		layout.getChildren().addAll(listView, tableChoiceBox, addButton, delButton, getButton);
-		
 		scene = new Scene(layout, 640, 480);
 		window.setScene(scene);
 		window.show();
+	}	
+	
+	private void refresh() {
+		
+		listView.getItems().clear();
+		listView.getItems().addAll(getList(tableChoiceBox));
+		listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 	}
 	
+	
 	private List getList(ChoiceBox<String> tableChoiceBox) {
-		AppFactoryInterface factoryUsers = (new AppFactory()).createFactory(FactoryType.Users);
-		AppFactoryInterface factoryProducts = (new AppFactory()).createFactory(FactoryType.Users);
-		AppFactoryInterface factoryPrivileges = (new AppFactory()).createFactory(FactoryType.Users);
 		
 	switch (tableChoiceBox.getValue()) {
 	case "Users":
+		usersItem = factoryUsers.select();
 		return factoryUsers.select();
 	case "Products":
+		productsItem = factoryProducts.select();
 		return factoryProducts.select();
-	case "Privileges":		
+	case "Privileges":	
+		privilegesItem = factoryPrivileges.select();
 		return factoryPrivileges.select();
 	default:
+		usersItem = factoryUsers.select();
+		System.out.println(usersItem);
 		return factoryUsers.select();
 	}
+	}
+	private boolean deleteItem() {
+	
+		switch (tableChoiceBox.getValue()) {
+		case "Users":
+			factoryUsers.delete((usersItem.get(listView.getSelectionModel().getSelectedIndex()).getId()));
+			return true;
+		case "Products":
+			factoryProducts.delete((productsItem.get(listView.getSelectionModel().getSelectedIndex()).getId()));
+			return true;
+		case "Privileges":		
+			factoryPrivileges.delete((privilegesItem.get(listView.getSelectionModel().getSelectedIndex()).getId()));
+			return true;
+	
+		}
+		return false;		
+		
 	}
 }
